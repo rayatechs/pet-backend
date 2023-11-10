@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\RegisterController;
 use \App\Http\Controllers\Api\LoginController;
+use \App\Http\Controllers\Api\PetController;
+use \App\Http\Controllers\Api\BreedController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,12 +17,23 @@ use \App\Http\Controllers\Api\LoginController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
-Route::prefix('auth')->name('auth.')->group(function() {
+Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('register',   [RegisterController::class, 'register'])->name('register');
     Route::post('login',      [LoginController::class, 'login'])->name('login');
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('pet')->name('pet')->group(function () {
+        Route::get('/', [PetController::class, 'all'])->name('all');
+        Route::post('/', [PetController::class, 'create'])->name('create');
+        Route::patch('/{pet}', [PetController::class, 'update'])->name('update');
+        Route::delete('/{pet}', [PetController::class, 'delete'])->name('delete');
+    });
+
+
+    Route::prefix('breed')->name('breed')->group(function () {
+        Route::get('/', [BreedController::class, 'all'])->name('all');
+    });
 });

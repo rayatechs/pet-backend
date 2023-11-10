@@ -44,4 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    #region relationships
+    public function pets()
+    {
+        return $this->hasMany(Pet::class);
+    }
+    #endregion
+
+    #region function
+    #endregion
 }
