@@ -19,6 +19,12 @@ class PetController extends Controller
         return $this->successResponser('واکشی اظلاعات با موفقیت انجام شد.', Response::HTTP_OK,  $data);
     }
 
+    public function show(Pet $pet)
+    {
+        $data = new PetResource($pet);
+        return $this->successResponser('واکشی اظلاعات با موفقیت انجام شد.', Response::HTTP_OK,  $data);
+    }
+
     public function create(PetCreateRequest $request): \Illuminate\Http\JsonResponse
     {
         $pet =  Pet::create([

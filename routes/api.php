@@ -27,6 +27,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('pet')->name('pet')->group(function () {
         Route::get('/', [PetController::class, 'all'])->name('all');
+        Route::get('/{pet}', [PetController::class, 'show'])->name('show');
         Route::post('/', [PetController::class, 'create'])->name('create');
         Route::patch('/{pet}', [PetController::class, 'update'])->name('update');
         Route::delete('/{pet}', [PetController::class, 'delete'])->name('delete');
