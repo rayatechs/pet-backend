@@ -50,6 +50,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pet::class);
     }
+
+    public function alrams()
+    {
+        return $this->hasMany(Alarm::class);
+    }
     #endregion
 
     #region function
