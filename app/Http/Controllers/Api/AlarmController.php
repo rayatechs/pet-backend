@@ -7,34 +7,44 @@ use App\Http\Requests\Api\AlarmCreateRequest;
 use App\Http\Requests\Api\AlarmUpdateRequest;
 use App\Http\Resources\AlarmResource;
 use App\Models\Alarm;
-use App\Models\Pet;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AlarmController extends Controller
 {
-    public function all()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
         $data = AlarmResource::collection(Alarm::getUserAlarms());
         return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
     }
 
-    public function show(Alarm $alarm)
-    {
-        $data = new AlarmResource($alarm);
-           return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
-    }
-
-    public function create(AlarmCreateRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(AlarmCreateRequest $request)
     {
         $data = Alarm::create([
-            'user_id' => auth()->user()->id,
-        ] + $request->all() );
+                'user_id' => auth()->user()->id,
+            ] + $request->all() );
 
         return $this->successResponser('درج اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
 
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(Alarm $alarm)
+    {
+        $data = new AlarmResource($alarm);
+        return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(AlarmUpdateRequest $request,  Alarm $alarm )
     {
         try {
@@ -47,7 +57,10 @@ class AlarmController extends Controller
 
     }
 
-    public function delete(Alarm $alarm)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Alarm $alarm)
     {
         try {
             $alarm->delete();
