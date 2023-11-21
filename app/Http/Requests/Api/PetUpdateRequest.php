@@ -26,10 +26,6 @@ class PetUpdateRequest extends FormRequest
             "name" => "sometimes|required|string",
             "birthdate" => "sometimes|required",
             "sex" => "sometimes|required",
-            "training_level" => "sometimes|required",
-            "color" => "sometimes|required",
-            "is_sterilized" => "sometimes|required",
-            "vaccine" => "sometimes|required",
             "breed_id" => "sometimes|required",
         ];
     }

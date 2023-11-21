@@ -26,10 +26,10 @@ class PetCreateRequest extends FormRequest
             "name"          => "required|string",
             "birthdate"     => "required",
             "sex"           => "required",
-            "training_level"  => "required",
-            "color"         => "required",
-            "is_sterilized" => "required",
-            "vaccine"       => "required",
+//            "training_level"  => "required",
+//            "color"         => "required",
+//            "is_sterilized" => "required",
+//            "vaccine"       => "required",
             "breed_id"      => "required",
         ];
     }
