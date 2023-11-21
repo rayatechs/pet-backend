@@ -19,10 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->timestamp('birthdate');
             $table->enum('sex' , Pet::SEX_PET);
-            $table->enum('training_level', Pet::TRAINING_LEVEL);
-            $table->string('color');
-            $table->boolean('is_sterilized');
-            $table->boolean('vaccine');
+
 
             $table->foreign('user_id')
                 ->references('id')

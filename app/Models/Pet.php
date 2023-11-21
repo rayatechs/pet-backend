@@ -17,11 +17,11 @@ class Pet extends Model
         'FEMALE' => 'female'
     ];
 
-    const TRAINING_LEVEL = [
-        'BEGINNER'     => 'beginner',
-        'INTERMEDIATE' => 'intermediate',
-        'PROFESSIONAL' => 'professional',
-    ];
+//    const TRAINING_LEVEL = [
+//        'BEGINNER'     => 'beginner',
+//        'INTERMEDIATE' => 'intermediate',
+//        'PROFESSIONAL' => 'professional',
+//    ];
 
     protected $fillable = [
         'name',
@@ -29,10 +29,6 @@ class Pet extends Model
         'breed_id',
         'birthdate',
         'sex',
-        'training_level',
-        'color',
-        'is_sterilized',
-        'vaccine'
     ];
 
     protected $casts = [
