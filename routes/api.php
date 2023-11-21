@@ -29,13 +29,12 @@ Route::prefix('auth')->name('auth.')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::prefix('pet')->name('pet')->group(function () {
-        Route::get('/', [PetController::class, 'all'])->name('all');
-        Route::get('/{pet}', [PetController::class, 'show'])->name('show');
-        Route::post('/', [PetController::class, 'create'])->name('create');
-        Route::patch('/{pet}', [PetController::class, 'update'])->name('update');
-        Route::delete('/{pet}', [PetController::class, 'delete'])->name('delete');
-    });
+
+
+    Route::apiResources([
+        'alarm' => AlarmController::class,
+        'pet'   => PetController::class,
+    ]);
 
 
     Route::prefix('breed')->name('breed')->group(function () {
@@ -43,13 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
 
-    Route::prefix('alarm')->name('alarm')->group(function () {
-        Route::get('/', [AlarmController::class, 'all'])->name('all');
-        Route::get('/{alarm}', [AlarmController::class, 'show'])->name('show');
-        Route::post('/', [AlarmController::class, 'create'])->name('create');
-        Route::patch('/{alarm}', [AlarmController::class, 'update'])->name('update');
-        Route::delete('/{alarm}', [AlarmController::class, 'delete'])->name('delete');
-    });
 
     Route::prefix('event')->name('event')->group(function () {
         Route::get('/', [\App\Http\Controllers\Api\EventController::class, 'get'])->name('get');
