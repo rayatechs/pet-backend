@@ -17,12 +17,13 @@ class PetResource extends JsonResource
         return [
             'name'  => $this->name,
             'sex'   => $this->sex,
-            'brithdate' => $this->brithdate,
+            'birthdate' => $this->birthdate,
             'created_at' => $this->created_at,
             'breed' => [
                 'parent_name' => $this->breed()->first()->parent->name,
                 'name'        => $this->breed->name,
             ],
+            'avatar' => $this->avatar != null ? asset($this->avatar) : null,
         ];
     }
 }

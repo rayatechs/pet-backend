@@ -36,13 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
         'pet'   => PetController::class,
     ]);
 
+    Route::post('pet/{pet}/upload-avatar', [PetController::class, 'uploadAvatar'])->name('pet.upload.avatar');
 
     Route::prefix('breed')->name('breed')->group(function () {
         Route::get('/', [BreedController::class, 'all'])->name('all');
     });
-
-
-
     Route::prefix('event')->name('event')->group(function () {
         Route::get('/', [\App\Http\Controllers\Api\EventController::class, 'get'])->name('get');
         Route::post('/' , [EventController::class, 'create'])->name('create');
