@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Traits\EnumeratesValues;
+use Morilog\Jalali\Jalalian;
 
 class Pet extends Model
 {
@@ -29,6 +31,7 @@ class Pet extends Model
         'breed_id',
         'birthdate',
         'sex',
+        'avatar',
     ];
 
     protected $casts = [
@@ -49,5 +52,9 @@ class Pet extends Model
     #endregion
 
     #region function
+    public static function storeDate($date): string
+    {
+        return Jalalian::fromFormat('Y-m-d', $date)->toCarbon()->toDateTimeString();
+    }
     #endregion
 }
