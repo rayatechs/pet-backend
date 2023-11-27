@@ -40,7 +40,7 @@ class Alarm extends Model
 
     public static function convertDueDateToGregorian($date)
     {
-        return Jalalian::fromFormat('Y-m-d H:i:sP', $date)->toCarbon()->toDateTimeString();
+        return Jalalian::fromFormat('Y-m-d H:i', $date)->toCarbon()->toDateTimeString();
     }
     #endregion
 }
