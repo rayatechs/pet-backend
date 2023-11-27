@@ -30,10 +30,10 @@ class PetController extends Controller
 
 
         $pet =  Pet::create([
-                'user_id'  => auth()->user()->id,
-                'breed_id' => $request->breed_id,
-                'birthdate' => Pet::storeDate($request->birthdate)
-            ] + $request->all());
+            'user_id'  => auth()->user()->id,
+            'breed_id' => $request->breed_id,
+            'birthdate' => Pet::convertBirthdateToDateGregorian($request->birthdate)
+        ] + $request->all());
 
         $data = new PetResource($pet);
         return $this->successResponser('اطلاعات شما با موفقیت ثبت شد.', Response::HTTP_OK,  $data);
@@ -74,13 +74,12 @@ class PetController extends Controller
     /**
      * upload avatar for pets.
      */
-    public function uploadAvatar(Pet $pet , AvatarRequest $request)
+    public function uploadAvatar(Pet $pet, AvatarRequest $request)
     {
         if ($request->hasFile('avatar')) {
             $image_path = $request->file('avatar')->store('avatar', 'public');
-            $pet->update([ 'avatar' => $image_path ]);
+            $pet->update(['avatar' => $image_path]);
             return $this->successResponser('اپلود اواتار با موفقیت انجام شد.', Response::HTTP_OK, asset($image_path));
         }
-
     }
 }

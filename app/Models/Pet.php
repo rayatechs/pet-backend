@@ -52,7 +52,7 @@ class Pet extends Model
     #endregion
 
     #region function
-    public static function storeDate($date): string
+    public static function convertBirthdateToDateGregorian($date): string
     {
         return Jalalian::fromFormat('Y-m-d', $date)->toCarbon()->toDateTimeString();
     }

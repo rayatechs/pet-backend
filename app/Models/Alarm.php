@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Morilog\Jalali\Jalalian;
 
 class Alarm extends Model
 {
@@ -34,7 +35,12 @@ class Alarm extends Model
 
     public static function getUserAlarms()
     {
-        return self::where('user_id' , auth()->user()->id)->get();
+        return self::where('user_id', auth()->user()->id)->get();
+    }
+
+    public static function convertDueDateToGregorian($date)
+    {
+        return Jalalian::fromFormat('Y-m-d H:i:sP', $date)->toCarbon()->toDateTimeString();
     }
     #endregion
 }
