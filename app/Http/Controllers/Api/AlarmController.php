@@ -17,7 +17,7 @@ class AlarmController extends Controller
     public function index()
     {
         $data = AlarmResource::collection(Alarm::getUserAlarms());
-        return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
+        return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد', Response::HTTP_OK, $data);
     }
 
     /**
@@ -26,11 +26,11 @@ class AlarmController extends Controller
     public function store(AlarmCreateRequest $request)
     {
         $data = Alarm::create([
-                'user_id' => auth()->user()->id,
-            ] + $request->all() );
+            'user_id' => auth()->user()->id,
+            'due'     => Alarm::convertDueDateToGregorian($request->due),
+        ] + $request->all());
 
-        return $this->successResponser('درج اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
-
+        return $this->successResponser('درج اظلاعت بات موفقیت انجام شد', Response::HTTP_OK, $data);
     }
 
     /**
@@ -39,22 +39,21 @@ class AlarmController extends Controller
     public function show(Alarm $alarm)
     {
         $data = new AlarmResource($alarm);
-        return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, $data);
+        return $this->successResponser('بازشگت اظلاعت بات موفقیت انجام شد', Response::HTTP_OK, $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AlarmUpdateRequest $request,  Alarm $alarm )
+    public function update(AlarmUpdateRequest $request,  Alarm $alarm)
     {
         try {
             $alarm->update($request->all());
             $data = new AlarmResource($alarm);
-            return $this->successResponser('بروزرسانی اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK,$data);
+            return $this->successResponser('بروزرسانی اظلاعت بات موفقیت انجام شد', Response::HTTP_OK, $data);
         } catch (\Exception $e) {
             return  $e->getMessage();
         }
-
     }
 
     /**
@@ -65,7 +64,7 @@ class AlarmController extends Controller
         try {
             $alarm->delete();
 
-            return $this->successResponser('حذف اظلاعت بات موفقیت انجام شد' , Response::HTTP_OK, null);
+            return $this->successResponser('حذف اظلاعت بات موفقیت انجام شد', Response::HTTP_OK, null);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
