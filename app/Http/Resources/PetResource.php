@@ -21,6 +21,7 @@ class PetResource extends JsonResource
             'birthdate' => $this->birthdate,
             'created_at' => $this->created_at,
             'breed' => [
+                'id'          => $this->breed->id,
                 'parent_name' => $this->breed()->first()->parent->name,
                 'name'        => $this->breed->name,
             ],
