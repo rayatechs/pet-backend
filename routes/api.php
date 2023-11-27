@@ -38,9 +38,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     ]);
 
-    Route::resource('user', UserController::class)->only([
-        'show', 'update'
-    ]);
+    Route::resource('user', UserController::class)->only(['update']);
+    Route::get('user', [UserController::class, 'show'])->name('user.show');
 
     Route::post('pet/{pet}/upload-avatar', [PetController::class, 'uploadAvatar'])->name('pet.upload.avatar');
 

@@ -15,9 +15,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $User)
+    public function show()
     {
-        return $this->successResponser('بازگشت اطلاعات با موفقیت انجام شد', Response::HTTP_OK, new UserResource($User));
+        return $this->successResponser('بازگشت اطلاعات با موفقیت انجام شد', Response::HTTP_OK, new UserResource(auth()->user()));
     }
 
     /**
