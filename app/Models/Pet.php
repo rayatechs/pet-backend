@@ -56,5 +56,15 @@ class Pet extends Model
     {
         return Jalalian::fromFormat('Y-m-d', $date)->toCarbon()->toDateTimeString();
     }
+
+    public function setBirthdateAttribute($value)
+    {
+        $this->attributes['birthdate'] = $this->convertBirthdateToDateGregorian($value);
+    }
+
+    public function getBirthdateAttribute($value)
+    {
+        return Jalalian::fromDateTime($value)->format('Y-m-d');
+    }
     #endregion
 }

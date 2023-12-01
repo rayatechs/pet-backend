@@ -2,13 +2,10 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Morilog\Jalali\CalendarUtils;
-use Morilog\Jalali\Jalalian;
 
-class AlarmResource extends JsonResource
+class EventResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +15,8 @@ class AlarmResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'   => $this->id,
-            'event' => $this->event->name,
-            'user'  => new UserResource($this->user),
-            'name'  => $this->name,
-            'due'   => $this->due,
+            'id'         => $this->id,
+            'name'       => $this->name,
             'created_at' => $this->created_at
         ];
     }

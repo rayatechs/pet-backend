@@ -32,7 +32,6 @@ class PetController extends Controller
         $pet =  Pet::create([
             'user_id'  => auth()->user()->id,
             'breed_id' => $request->breed_id,
-            'birthdate' => Pet::convertBirthdateToDateGregorian($request->birthdate)
         ] + $request->all());
 
         $data = new PetResource($pet);

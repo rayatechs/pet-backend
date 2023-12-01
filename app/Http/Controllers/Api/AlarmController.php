@@ -27,7 +27,6 @@ class AlarmController extends Controller
     {
         $data = Alarm::create([
             'user_id' => auth()->user()->id,
-            'due'     => Alarm::convertDueDateToGregorian($request->due),
         ] + $request->all());
 
         return $this->successResponser('درج اظلاعت بات موفقیت انجام شد', Response::HTTP_OK, $data);
