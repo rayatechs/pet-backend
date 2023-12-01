@@ -22,7 +22,7 @@ class AlarmResource extends JsonResource
             'event' => $this->event->name,
             'user'  => new UserResource($this->user),
             'name'  => $this->name,
-            'due'   => Jalalian::fromDateTime($this->due)->format('Y-m-d H:i'),
+            'due'   => $this->due,
             'created_at' => $this->created_at
         ];
     }

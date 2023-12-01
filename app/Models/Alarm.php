@@ -42,5 +42,15 @@ class Alarm extends Model
     {
         return Jalalian::fromFormat('Y-m-d H:i', $date)->toCarbon()->toDateTimeString();
     }
+
+    public function setDueAttribute($value)
+    {
+        $this->attributes['due'] = $this->convertDueDateToGregorian($value);
+    }
+
+    public function getDueAttribute($value)
+    {
+        return Jalalian::fromDateTime($value)->format('Y-m-d H:i');
+    }
     #endregion
 }
